@@ -1,64 +1,25 @@
-# TBActionSheet
+//
+//  TBActionSheet.h
+//
+//  Created by 杨萧玉 on 15/11/17.
+//  Copyright © 2015年 杨萧玉. All rights reserved.
+//
 
-[![CI Status](http://img.shields.io/travis/yulingtianxia/TBActionSheet.svg?style=flat)](https://travis-ci.org/yulingtianxia/TBActionSheet)
-[![Version](https://img.shields.io/cocoapods/v/TBActionSheet.svg?style=flat)](http://cocoapods.org/pods/TBActionSheet)
-[![License](https://img.shields.io/cocoapods/l/TBActionSheet.svg?style=flat)](http://cocoapods.org/pods/TBActionSheet)
-[![Platform](https://img.shields.io/cocoapods/p/TBActionSheet.svg?style=flat)](http://cocoapods.org/pods/TBActionSheet)
+#import <UIKit/UIKit.h>
+#import "TBActionButton.h"
 
-TBActionSheet is a custom action sheet. The default style is iOS9, you can make your own style.  
+NS_ASSUME_NONNULL_BEGIN
 
-**TBActionSheet supports autorotation**, but there is some bugs on iOS7 :(
+@class TBActionContainer;
+@protocol TBActionSheetDelegate;
 
-Here is a gif showing TBActionSheet's powerful individuation:
-
-![](images/demo.gif)
-
-This is the iOS9 style of `TBActionSheet` running on iOS7&iPhone 4s:
-
-![](images/iPhone4s.jpg)
-
-You can also add your custom `UIView` under the title of `TBActionSheet`:
-
-![](images/iPhone6p.jpg)
-
-This repo also include `TBAlertController`, which unifies `UIAlertController`, `UIAlertView`, and `UIActionSheet`. For more infomation about `TBAlertController`, please visit [this post](http://yulingtianxia.com/blog/2015/11/13/Summary-of-the-first-month-in-the-internship-of-Tencent/) of my blog.
-
-BTW, TBActionSheet also suppots BLOCK now!
-
-##Installation
-###CocoaPods
-
-TBActionSheet is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod "TBActionSheet"
-```
-
-###Manual
-
-Just drag the "Source" document folder into your project.
-
-##Usage
-
-###TLDR
-
-To let TBActionSheet looks like WeChat style, you can set these properties of `TBActionShet` or it's `UIAppearance` like this :
-```
-sheetWidth = MIN(kScreenWidth, kScreenHeight);
-backgroundTransparentEnabled = NO;
-rectCornerRadius = 0;
-``` 
-
-### More than what you want
-
-The base usage is same to `UIActionSheet`. You can just replace `UIActionSheet` with `TBActionSheet`. If you want to customize your action sheet, just configure some properties. I believe the header file can tell you much more than me. 
-
-```
 @interface TBActionSheet : UIView
 @property(nullable,nonatomic,weak) id<TBActionSheetDelegate> delegate;
 @property(nonatomic,copy)  NSString * _Nullable  title;
 @property(nonatomic,copy)  NSString * _Nullable  message;
+
+@property (nonatomic,nullable,copy,readonly) void (^userClickIndex)(NSInteger indexTag);
+
 /**
  *   标记藏于 ActionSheet 下面的 UIWindow
  */
@@ -167,14 +128,22 @@ The base usage is same to `UIActionSheet`. You can just replace `UIActionSheet` 
  */
 - (void)setUpContainerFrame;
 @end
-```
 
-There is also an example project for `TBActionSheet`.
+@protocol TBActionSheetDelegate <NSObject>
+@optional
 
-## Author
+// Called when a button is clicked. The view will be automatically dismissed after this call returns
+- (void)actionSheet:(TBActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
+// Called when we cancel a view (eg. the user clicks the Home button). This is not called when the user clicks the cancel button.
+// If not defined in the delegate, we simulate a click in the cancel button
+- (void)actionSheetCancel:(TBActionSheet *)actionSheet;
 
-yulingtianxia, yulingtianxia@gmail.com
+- (void)willPresentActionSheet:(TBActionSheet *)actionSheet;  // before animation and showing view
+- (void)didPresentActionSheet:(TBActionSheet *)actionSheet;  // after animation
 
-## License
+- (void)actionSheet:(TBActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex; // before animation and hiding view
+- (void)actionSheet:(TBActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
 
-TBActionSheet is available under the MIT license. See the LICENSE file for more info.
+@end
+
+NS_ASSUME_NONNULL_END
