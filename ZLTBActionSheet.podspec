@@ -9,7 +9,7 @@ DESC
 s.homepage     = "https://github.com/zhoulincome/ZLTBActionSheet"
 
 s.license = { :type => 'MIT', :file => 'LICENSE' }
-s.author       = { "ChengJiShiHan” => "359344816@qq.com" }
+s.author       = { "ChengJiShiHan" => "359344816@qq.com" }
 s.source       = { :git => "https://github.com/zhoulincome/ZLTBActionSheet.git", :tag => s.version.to_s }
 
 s.platform     = :ios, '6.0'
