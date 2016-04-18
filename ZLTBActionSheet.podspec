@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name         = "ZLTBActionSheet"
-s.version      = "1.4.2"
+s.version      = "1.4.3"
 s.summary      = "A Custom&Magical ActionSheet."
 s.description  = <<-DESC
 TBActionSheet is a custom action sheet. The default style is iOS9, you can make your own style.
@@ -8,7 +8,7 @@ If you want your UIAlertController to be compatible with iOS7(even lower), you c
 DESC
 s.homepage     = "https://github.com/zhoulincome/ZLTBActionSheet"
 
-s.license = { :type => 'MIT', :file => 'LICENSE' }
+s.license      = "MIT"
 s.author       = { "ChengJiShiHan" => "359344816@qq.com" }
 s.source       = { :git => "https://github.com/zhoulincome/ZLTBActionSheet.git", :tag => s.version.to_s }
 
