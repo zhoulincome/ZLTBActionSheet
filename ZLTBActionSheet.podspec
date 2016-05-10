@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name         = "ZLTBActionSheet"
-s.version      = "1.4.3"
+s.version      = "1.4.4"
 s.summary      = "A Custom&Magical ActionSheet."
 s.description  = <<-DESC
 TBActionSheet is a custom action sheet. The default style is iOS9, you can make your own style.

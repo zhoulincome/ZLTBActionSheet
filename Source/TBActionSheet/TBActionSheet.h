@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)  NSString * _Nullable  title;
 @property(nonatomic,copy)  NSString * _Nullable  message;
 
-@property (nonatomic,nullable,copy,readonly) void (^userClickIndex)(NSInteger indexTag);
+@property (nonatomic,nullable,copy) void (^userClickIndex)(NSInteger indexTag);
 
 /**
  *   标记藏于 ActionSheet 下面的 UIWindow
